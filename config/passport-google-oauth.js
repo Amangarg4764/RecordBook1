@@ -17,20 +17,12 @@ passport.use(
       if (user) {
         return done(null, user);
       } else {
-        User.create(
-          {
-            name: profile.displayName,
-            email: profile.emails[0].value,
-            password: crypto.randomBytes(20).toString("hex"),
-          },
-          function (err, data) {
-            if (err) {
-              console.log("error in adding data using google oauth");
-              return;
-            }
-            return done(null, data);
-          }
-        );
+        let data = await User.create({
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          password: crypto.randomBytes(20).toString("hex"),
+        });
+        return done(null, data);
       }
     }
   )
