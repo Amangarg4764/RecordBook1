@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Record Book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      .flex1 {
+        float: right;
+      }
+      .btn {
+        text-align: justify;
+      }
+      #part {
+        width: 100%;
+        height: fit-content;
+        background-color: white;
+      }
+
+      #header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-bottom: 1px solid lightgray;
+      }
+      .header_div {
+        margin: 10px 0px;
+      }
+      #desc {
+        width: 98%;
+        padding: 1%;
+        height: 3rem;
+        font-size: 1.2rem;
+        border: none;
+        outline: none;
+      }
+      #des_bar {
+        padding: 10px;
+        border-bottom: 1px solid lightgray;
+      }
+      #des_bar:hover,
+      #des_bar:hover #desc {
+        background-color: rgb(160, 197, 232);
+      }
+      #Two_input {
+        display: flex;
+        width: 100%;
+        border-bottom: 1px solid lightgray;
+      }
+      #two {
+        width: 50%;
+        padding: 10px;
+      }
+      #dat {
+        width: 98%;
+        padding: 1%;
+        border: none;
+        height: 3rem;
+        font-size: 1.1rem;
+        content: "DD";
+        outline: none;
+      }
+      #two:hover,
+      #two:hover #dat {
+        background-color: rgb(160, 197, 232);
+      }
+      #part p {
+        font-size: 1.1rem;
+        color: rgb(59, 56, 56);
+        margin-bottom: 5px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand">RecordBook</a>
+        </div>
+        <div class="flex1">
+          <p class="navbar-text">
+            Signed in as <a href="#" class="navbar-link">Aman garg</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <p>
+            <%=data.mowner.vname.vname%> > <%=data.mowner.mname%> >
+            <%=data.jname%>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-11">
+          <button
+            class="btn btn-warning btn-lg"
+            data-toggle="modal"
+            data-target="#myModal5"
+            style="float: right"
+          >
+            Edit
+          </button>
+        </div>
+        <!-- Modal 1-->
+        <div class="modal fade" id="myModal5" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  &times;
+                </button>
+                <h4 class="modal-title">Edit Journey Detail</h4>
+              </div>
+              <form
+                action="/updateThisJourney/?id=<%=data._id%>"
+                method="post"
+                class="form-group"
+              >
+                <div class="modal-body">
+                  <label for="title">Journey Name</label>
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    class="form-control"
+                    value="<%=data.jname%>"
+                    required
+                  />
+                  <label for="arrival">Arrival Date</label>
+                  <input
+                    type="date"
+                    name="arrival"
+                    id="arrival"
+                    class="form-control"
+                    value='<%=data.arrival.toISOString().split("T")[0]%>%>'
+                    required
+                  />
+                  <label for="departure">Departure Date</label>
+                  <input
+                    type="text"
+                    name="departure"
+                    id="departure"
+                    class="form-control"
+                    value="<%=data.departure%>"
+                    required
+                  />
+
+                  <label for="qtl">QTL</label>
+                  <input
+                    type="text"
+                    name="qtl"
+                    id="qtl"
+                    class="form-control"
+                    value="<%=data.qtl%>"
+                    required
+                  />
+                  <label for="rate">Rate</label>
+                  <input
+                    type="text"
+                    name="rate"
+                    id="rate"
+                    class="form-control"
+                    value="<%=data.rate%>"
+                    required
+                  />
+                  <label for="weightloss">Weight Loss</label>
+                  <input
+                    type="text"
+                    name="weightloss"
+                    id="weightloss"
+                    class="form-control"
+                    value="<%=data.weightloss%>"
+                    required
+                  />
+                  <label for="weightlossPrice">Weight Loss Price</label>
+                  <input
+                    type="text"
+                    name="weightlossPrice"
+                    id="weightlossPrice"
+                    class="form-control"
+                    value="<%=data.weightlossPrice%>"
+                    required
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+    </div>
+    <br />
+    <div style="display: flex">
+      <div
+        class="container"
+        style="overflow: scroll; border: 1px solid lightgray"
+      >
+        <div id="part">
+          <div id="header">
+            <div class="header_div"><h1>Journey details</h1></div>
+          </div>
+          <div id="des_bar">
+            <label for="desc">Title</label><br />
+            <p id="desc"><%=data.jname%></p>
+          </div>
+          <div id="Two_input">
+            <div id="two">
+              <label for="dat">Arrival Date</label><br />
+              <p id="dat"><%=data.arrival.toLocaleDateString()%></p>
+            </div>
+            <div id="two">
+              <label for="dat">Departure Date</label><br />
+              <p id="dat"><%=data.departure%></p>
+            </div>
+          </div>
+          <div id="Two_input">
+            <div id="Two_input">
+              <div id="two">
+                <label for="dat">QTL</label><br />
+                <p id="dat"><%=data.qtl%></p>
+              </div>
+              <div id="two">
+                <label for="dat">Rate</label><br />
+                <p id="dat"><%=data.rate%></p>
+              </div>
+            </div>
+            <div id="Two_input">
+              <div id="two">
+                <label for="dat">Weight Loss</label><br />
+                <p id="dat"><%=data.weightloss%></p>
+              </div>
+              <div id="two">
+                <label for="dat">Weight Loss Price</label><br />
+                <p id="dat"><%=data.weightlossPrice%></p>
+              </div>
+            </div>
+          </div>
+          <div id="des_bar" style="overflow: scroll">
+            <label for="desc">Expensive</label><br />
+            <table class="table">
+              <tr class="row">
+                <th class="col-sm-4">Date</th>
+                <th class="col-sm-2">Title</th>
+                <th class="col-sm-2">Price</th>
+                <th class="col-sm-4"></th>
+              </tr>
+              <tr class="row">
+                <form
+                  action="/addThisExpenseDetail/?id=<%=data._id%>&key=1"
+                  method="POST"
+                  class="form-group"
+                >
+                  <% var iu=new Date() %>
+                  <td class="col-sm-4">
+                    <input
+                      id="dateOfInves"
+                      type="date"
+                      name="dateOfInves"
+                      value='<%=iu.toISOString().split("T")[0]%>'
+                      class="form-control"
+                      required
+                    />
+                  </td>
+                  <td class="col-sm-2">
+                    <input
+                      type="text"
+                      name="title"
+                      class="form-control"
+                      required
+                    />
+                  </td>
+                  <td class="col-sm-2">
+                    <input
+                      type="number"
+                      name="price"
+                      class="form-control"
+                      required
+                    />
+                  </td>
+                  <td class="col-sm-4">
+                    <input type="submit" value="ADD" class="btn btn-success" />
+                  </td>
+                </form>
+              </tr>
+
+              <% if(data.expensive.length == 0){ %>
+              <tr class="row">
+                <td class="col-sm-10">No expensive avialable</td>
+              </tr>
+              <% } else {%> <%for(i of data.expensive){%>
+              <tr class="row" id="<%=i._id%>">
+                <td class="col-sm-4">
+                  <%= i.dateOfInves.toLocaleDateString() %>
+                </td>
+                <td class="col-sm-2"><%= i.title %></td>
+                <td class="col-sm-2">₹ <%= i.price %></td>
+                <td class="col-sm-4">
+                  <a href="/deleteThisExpenseDetail/?id=<%=i._id%>&key=1"
+                    ><button class="btn btn-danger">Delete</button></a
+                  >
+                  <input
+                    type="button"
+                    class="btn btn-warning"
+                    value="Edit"
+                    onclick='edit("<%=i._id%>");'
+                  />
+                </td>
+              </tr>
+              <tr id="hide<%=i._id%>" style="display: none" class="row">
+                <form
+                  action="/updateThisExpenseDetail/?id=<%=i._id%>&key=1"
+                  method="POST"
+                  class="form-group"
+                >
+                  <td class="col-sm-4">
+                    <input
+                      type="text"
+                      name="title"
+                      value="<%=i.title%>"
+                      class="form-control"
+                      required
+                    />
+                  </td>
+                  <td class="col-sm-2">
+                    <input
+                      id="dateOfInves"
+                      type="date"
+                      name="dateOfInves"
+                      value='<%=i.dateOfInves.toISOString().split("T")[0]%>'
+                      class="form-control"
+                      required
+                    />
+                  </td>
+                  <td class="col-sm-2">
+                    <input
+                      type="number"
+                      name="price"
+                      value="<%=i.price%>"
+                      class="form-control"
+                      required
+                    />
+                  </td>
+                  <td class="col-sm-4">
+                    <input
+                      type="submit"
+                      class="btn btn-info"
+                      role="button"
+                      value="SAVE"
+                    />
+                  </td>
+                </form>
+              </tr>
+              <%}%> <% } %>
+            </table>
+          </div>
+          <div
+            id="des_bar"
+            style="
+              display: flex;
+              justify-content: space-between;
+              flex-direction: row-reverse;
+            "
+          >
+            <div>
+              <label for="desc">Profit</label><br />
+              <p id="desc"><%=data.profit%></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <script>
+      function edit(val1) {
+        document.getElementById(val1).style.display = "none";
+        document.getElementById("hide" + val1).style.display = "contents";
+      }
+    </script>
+  </body>
+</html>

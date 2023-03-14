@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Record Book</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            *{
+                padding: 0px;
+                margin: 0px;
+            }
+            .flex1{
+               float:right;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">RecordBook</a> 
+                </div>
+                <div class="flex1">  <p class="navbar-text">Signed in as <a href="#" class="navbar-link">Aman garg</a></p></div>
+            </div>
+        </div> 
+        <div class="container-fluid">
+            <div class="row">
+                <%if(key==3){%>
+                    <div class="col-sm-12"><p><%=data.parent.title%> > <%=data.title%> </p></div>
+                <%}else{%>
+                    <div class="col-sm-12"><p><%=data.mowner.vname.vname%> > <%=data.mowner.mname%> > <%= data.oname %></p></div>
+                <%}%>
+            </div>
+        </div>
+        
+        <div class="container">
+            <table class="table table-hover table-bordered">
+                <tr class="info"><th>Title</th><th>Date of Spend</th><th>Amount</th><th>Operations</th></tr>
+                <tr>
+                    <%if(key==3){%>
+                        <form action="/addThisExpenseDetail/?id=<%=data._id%>&key=3" method="POST" class="form-group">  
+                    <%}else{%>
+                        <form action="/addThisExpenseDetail/?id=<%=data._id%>&key=2" method="POST" class="form-group">  
+                    <%}%>
+                       
+                        <td><input type="text" name="title" class="form-control" required></td>
+                        <% var iu=new Date() %>
+                        <td><input id="dateOfInves" type="date" name="dateOfInves" value='<%=iu.toISOString().split("T")[0]%>' class="form-control" required></td>
+                        <td><input type="number" name="price" class="form-control" required></td>
+                        <td><input type="submit" value="ADD" class="btn btn-success"></td>
+                    </form>
+                </tr>
+            </table>
+        </div> 
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <%if(key==3){%>
+                    <div class="col-sm-9"><p>Detail List of spending on <%= data.title %></p></div>
+                    <div class="col-sm-3"><p>Total Spending: ₹ <%=data.price%></p></div>    
+                    <%}else{%>
+                <div class="col-sm-9"><p>Detail List of spending on <%= data.oname %></p></div>
+                <div class="col-sm-3"><p>Total Spending: ₹ <%=data.totalPrice%></p></div>
+                    <%}%>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <table class="table table-hover table-bordered  table-striped">
+                <tr class="row active">
+                    <th class="col-sm-4">Title</th>
+                    <th class="col-sm-2">Date of Spend</th>
+                    <th class="col-sm-2">Amount</th>
+                    <th class="col-sm-4">Operations</th></tr>
+                    <%if(key==3){%>
+                        <%for(i of data.child.reverse()){%>
+                            <tr id="<%=i._id%>" class="row"> 
+                                <td class="text-capitalize col-sm-4" ><%=i.title%></td>
+                                <td class="col-sm-2"><%=i.dateOfInves.toLocaleDateString()%></td>
+                                <td class="col-sm-2">₹ <%=i.price%></td>
+                                <td class="col-sm-4"><a href="/deleteThisExpenseDetail/?id=<%=i._id%>&key=3"><button class="btn btn-danger">Delete</button></a>
+                                <input type="button" class="btn btn-warning" value="Edit" onclick='edit("<%=i._id%>");'></td>
+                            </tr>
+                            <tr id="hide<%=i._id%>" style="display:none;" class="row">
+                                <form action="/updateThisExpenseDetail/?id=<%=i._id%>&key=3" method="POST" class="form-group">
+                                    <td class="col-sm-4"><input type="text" name="title" value="<%=i.title%>" class="form-control" required></td>
+                                    <td class="col-sm-2"><input id="dateOfInves" type="date" name="dateOfInves" value='<%=i.dateOfInves.toISOString().split("T")[0]%>' class="form-control" required></td>
+                                    <td class="col-sm-2"><input type="number" name="price" value="<%=i.price%>" class="form-control" required></td>
+                                    <td class="col-sm-4"><input type="submit" class="btn btn-info" role="button" value="SAVE"></td>
+                                </form>
+                            </tr>
+                            <%}%>
+            
+                        <%}else{%>
+                <%for(i of data.listOfThings.reverse()){%>
+                    
+                
+                <tr id="<%=i._id%>" class="row"> 
+                    <td class="text-capitalize col-sm-4" ><%=i.title%></td>
+                    <td class="col-sm-2"><%=i.dateOfInves.toLocaleDateString()%></td>
+                    <td class="col-sm-2">₹ <%=i.price%></td>
+                    <td class="col-sm-4"><a href="/deleteThisExpenseDetail/?id=<%=i._id%>&key=2"><button class="btn btn-danger">Delete</button></a>
+                    <input type="button" class="btn btn-warning" value="Edit" onclick='edit("<%=i._id%>");'></td>
+                </tr>
+                <tr id="hide<%=i._id%>" style="display:none;" class="row">
+                    <form action="/updateThisExpenseDetail/?id=<%=i._id%>&key=2" method="POST" class="form-group">
+                        <td class="col-sm-4"><input type="text" name="title" value="<%=i.title%>" class="form-control" required></td>
+                        <td class="col-sm-2"><input id="dateOfInves" type="date" name="dateOfInves" value='<%=i.dateOfInves.toISOString().split("T")[0]%>' class="form-control" required></td>
+                        <td class="col-sm-2"><input type="number" name="price" value="<%=i.price%>" class="form-control" required></td>
+                        <td class="col-sm-4"><input type="submit" class="btn btn-info" role="button" value="SAVE"></td>
+                    </form>
+                </tr>
+                <%}%>
+                <%}%>
+            </table>
+            <script>
+                function edit(val1){
+                    document.getElementById(val1).style.display="none";
+                    document.getElementById("hide"+val1).style.display="contents";
+                }
+            </script>
+        </div>
+    </body>
+</html>

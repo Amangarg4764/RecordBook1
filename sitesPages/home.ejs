@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Record Book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      .flex1 {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand">RecordBook</a>
+        </div>
+        <div class="flex1">
+          <p class="navbar-text">
+            Signed in as <a href="#" class="navbar-link">Aman garg</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row" style="float: right">
+        <div class="col-sm-11">
+          <button
+            class="btn btn-info"
+            data-toggle="modal"
+            data-target="#myModal1"
+          >
+            Add Vehical
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal1" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                  <h4 class="modal-title">Add New Vehical name</h4>
+                </div>
+                <form action="/addVehicle" method="post" class="form-group">
+                  <div class="modal-body">
+                    <input
+                      type="text"
+                      name="title"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Add</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-info"
+            data-toggle="modal"
+            data-target="#myModal2"
+          >
+            Add Other Title
+          </button>
+        </div>
+        <!-- Modal 1-->
+        <div class="modal fade" id="myModal2" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  &times;
+                </button>
+                <h4 class="modal-title">Enter Other Name</h4>
+              </div>
+              <form action="/addPersonal" method="post" class="form-group">
+                <div class="modal-body">
+                  <input
+                    type="text"
+                    name="title"
+                    class="form-control"
+                    autofocus
+                    required
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Add</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <% for (i of vdata){%>
+      <div class="btn btn-default btn-lg" role="button" style="margin: 5px">
+        <a
+          href="/getMonths/?id=<%=i._id%>&vname=<%=i.vname%>"
+          style="text-decoration: none; color: black"
+          ><h3><%= i.vname %></h3></a
+        >
+        <button
+          class="btn btn-warning"
+          data-toggle="modal"
+          data-target="#myModal3<%=i._id%>"
+        >
+          Edit
+        </button>
+        <!-- Modal 1-->
+        <div class="modal fade" id="myModal3<%=i._id%>" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  &times;
+                </button>
+                <h4 class="modal-title">Update Vehical Name</h4>
+              </div>
+              <form
+                action="/updateVehicalName/?id=<%=i.id%>"
+                method="post"
+                class="form-group"
+              >
+                <div class="modal-body">
+                  <input
+                    type="text"
+                    name="title"
+                    class="form-control"
+                    value="<%=i.vname%>"
+                    autofocus
+                    required
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <a href="/deleteVehicle/?id=<%=i._id%>"
+          ><button class="btn btn-danger">Delete</button></a
+        >
+      </div>
+      <%}%> <% for (i of odata){%>
+      <div class="btn btn-default btn-lg" role="button" style="margin: 5px">
+        <a
+          href="/getPersonalMonth/?id=<%=i._id%>&vname=<%=i.title%>"
+          style="text-decoration: none; color: black"
+          ><h3><%= i.title %></h3></a
+        >
+        <button
+          class="btn btn-warning"
+          data-toggle="modal"
+          data-target="#myModal4<%=i._id%>"
+        >
+          Edit
+        </button>
+        <!-- Modal 1-->
+        <div class="modal fade" id="myModal4<%=i._id%>" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  &times;
+                </button>
+                <h4 class="modal-title">Update Other Name</h4>
+              </div>
+              <form
+                action="/updatePersonal/?id=<%=i.id%>"
+                method="post"
+                class="form-group"
+              >
+                <div class="modal-body">
+                  <input
+                    type="text"
+                    name="title"
+                    class="form-control"
+                    value="<%=i.title%>"
+                    autofocus
+                    required
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <a href="/deletePersonal/?id=<%=i._id%>"
+          ><button class="btn btn-danger">Delete</button></a
+        >
+      </div>
+      <%}%>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+const express = require("express");
+const router = express.Router();
+const MonthsDetails = require("../model/monthsDetails");
+const OtherList = require("../model/otherThings");
+const OtherThisList = require("../model/other");
+
+router.get("/getJAO", async function (req, res) {
+  let mdata = await MonthsDetails.findById(req.query.id)
+    .populate("otherExp")
+    .populate("vname")
+    .populate("journeys")
+    .exec();
+
+  return res.render("jao", { data: mdata });
+});
+
+router.post("/addOtherExpensive", async function (req, res) {
+  let otherdata = await OtherList.create({
+    oname: req.body.title.toUpperCase(),
+    mowner: req.query.id,
+    totalPrice: 0,
+  });
+  let mdata = await MonthsDetails.findById(req.query.id);
+  mdata.otherExp.push(otherdata.id);
+  mdata.save();
+  return res.redirect("back");
+});
+
+router.post("/updateOtherExpensive", async function (req, res) {
+  await OtherList.findByIdAndUpdate(req.query.id, {
+    oname: req.body.title.toUpperCase(),
+  });
+  return res.redirect("back");
+});
+
+router.get("/deleteOtherExpensive", async function (req, res) {
+  let data = await OtherThisList.deleteMany({ listowner: req.query.id });
+  let odata = await OtherList.findByIdAndDelete(req.query.id);
+  await MonthsDetails.findByIdAndUpdate(odata.mowner, {
+    $pull: { otherExp: req.query.id },
+  });
+  return res.redirect("back");
+});
+
+module.exports = router;

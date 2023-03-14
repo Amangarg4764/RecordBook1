@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Record Book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      .flex1 {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand">RecordBook</a>
+        </div>
+        <div class="flex1">
+          <p class="navbar-text">
+            Signed in as <a href="#" class="navbar-link">Aman garg</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <p><%=data.vname.vname%> > <%=data.mname%></p>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row" style="float: right">
+        <div class="col-sm-11">
+          <button
+            class="btn btn-info"
+            data-toggle="modal"
+            data-target="#myModal"
+          >
+            Add Journey
+          </button>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                  <h4 class="modal-title">Add Vehical Journey details</h4>
+                </div>
+                <form
+                  action="/addJourney/?id=<%=data._id%>"
+                  method="post"
+                  class="form-group"
+                >
+                  <div class="modal-body">
+                    <label for="title">Journry Name</label>
+                    <input
+                      type="text"
+                      name="title"
+                      class="form-control"
+                      id="title"
+                      required
+                    />
+                    <label for="arrival">Arrival date</label>
+                    <% var iu=new Date() %>
+                    <input
+                      type="date"
+                      name="arrival"
+                      class="form-control"
+                      id="arrival"
+                      value='<%=iu.toISOString().split("T")[0]%>'
+                      required
+                    />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Add</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-info"
+            data-toggle="modal"
+            data-target="#myModal1"
+          >
+            Add Other Expensive
+          </button>
+        </div>
+        <!-- Modal 1-->
+        <div class="modal fade" id="myModal1" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  &times;
+                </button>
+                <h4 class="modal-title">Enter Other Expensive Name</h4>
+              </div>
+              <form
+                action="/addOtherExpensive/?id=<%=data._id%>"
+                method="post"
+                class="form-group"
+              >
+                <div class="modal-body">
+                  <input
+                    type="text"
+                    name="title"
+                    class="form-control"
+                    autofocus
+                    required
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Add</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <h2 class="page-header"><%=data.mname%></h2>
+      <% for (i of data.journeys.reverse()){%>
+      <div class="btn btn-default btn-lg" role="button" style="margin: 5px">
+        <a
+          href="/getThisJourney/?id=<%=i.id%>"
+          style="text-decoration: none; color: black"
+        >
+          <p>Profit : ₹ <%=i.profit%></p>
+          <h3><%=i.jname%></h3></a
+        >
+        <a href="/deleteThisJourney/?id=<%=i.id%>"
+          ><button class="btn btn-danger">Delete</button></a
+        >
+      </div>
+      <%}%> <% for (i of data.otherExp.reverse()){%>
+      <div class="btn btn-default btn-lg" role="button" style="margin: 5px">
+        <a
+          href="/getThisExpenseDetail/?id=<%=i.id%>"
+          style="text-decoration: none; color: black"
+        >
+          <p>Total Spend : ₹ <%=i.totalPrice%></p>
+          <h3><%=i.oname%></h3></a
+        >
+        <button
+          class="btn btn-warning"
+          data-toggle="modal"
+          data-target="#myModal<%=i._id%>"
+        >
+          Edit
+        </button>
+
+        <!-- Modal 1-->
+        <div class="modal fade" id="myModal<%=i._id%>" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  &times;
+                </button>
+                <h4 class="modal-title">Update Name</h4>
+              </div>
+              <form
+                action="/updateOtherExpensive/?id=<%=i._id%>"
+                method="post"
+                class="form-group"
+              >
+                <div class="modal-body">
+                  <input
+                    type="text"
+                    name="title"
+                    class="form-control"
+                    value="<%=i.oname%>"
+                    autofocus
+                    required
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <a href="/deleteOtherExpensive/?id=<%=i._id%>"
+          ><button class="btn btn-danger">Delete</button></a
+        >
+      </div>
+      <%}%>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Record Book</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+
+        }
+
+        body {
+            background-color: rgb(255, 255, 255);
+            height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        #cust {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-show {
+
+            font-size: 20px;
+            text-align: center;
+            background-color: white;
+
+        }
+
+        a {
+            text-decoration: none;
+
+        }
+        a:hover{
+          text-decoration: none;
+        }
+
+        .btn-slide {
+            display: block;
+            min-height: 52px;
+            max-height: fit-content;
+            min-width: 50%;
+
+            line-height: 50px;
+            background: #fdfdfd;
+            border: 2px solid;
+            transition: .5s;
+            border-radius: 50px;
+            font-size: 16px;
+        }
+
+        .service_messenger {
+            border-color: #0084ff;
+        }
+
+        .btn-slide span.circle {
+            display: block;
+            color: #fff;
+            position: relative;
+            float: left;
+            margin: 5px;
+            line-height: 40px;
+            height: 38px;
+            width: 40px;
+            top: 0;
+            left: 0;
+            transition: .5s;
+            border-radius: 50px;
+            background-color: #0084ff;
+        }
+
+        .btn-slide span.title,
+        .btn-slide span.title-hover {
+            position: relative;
+            right: 5px;
+            margin: 0 auto;
+
+        }
+
+        .service_messenger span.title,
+        .service_messenger span.title-hover {
+            color: #0084ff;
+
+        }
+
+        .btn-slide span.title-hover {
+            opacity: 0;
+            color: #fff;
+            display: none;
+        }
+
+        .btn-slide .title-hover i {
+            margin-right: 10px;
+        }
+
+        @media screen and (max-width: 680px) {
+            .btn-slide {
+                width: 90%;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    
+        <div class="container-fluid">
+            <div id="cust"><img src="/assest/image/Recordbook.png" alt="logo"></div>
+
+            <div class="btn-show">
+
+                <a class="btn-slide service_messenger" href="/home">
+                    <span class="circle">
+                        <i aria-hidden="true" class="fa fa-google"></i>
+                    </span>
+                    <span class="title">
+                        Sign up / Login with Gmail</span>
+                    <span class="title-hover">
+
+                    </span>
+
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        var button = document.querySelector(".btn-slide");
+
+        button.addEventListener("click", function (e) {
+            var a = document.querySelector(".circle").style;
+            a.color = "#0084ff";
+            a.left = "100%";
+            a.marginLeft = "-45px";
+            a.backgroundColor = "#fdfdfd";
+            var b = document.querySelector(".title").style;
+            b.right = "50px";
+            b.opacity = "1";
+            b.color = 'white';
+
+            var c = document.querySelector(".title-hover").style;
+            c.right = "40px";
+            c.opacity = "1";
+            document.querySelector(".title").innerHTML =
+                '<i class="fa fa-spinner fa-spin"></i> &nbsp;&nbsp;&nbsp;&nbsp; Logging into Account';
+            document.querySelector(".service_messenger").style.backgroundColor = "#0084ff";
+        });
+    </script>
+
+    <body>
+
+</html>
