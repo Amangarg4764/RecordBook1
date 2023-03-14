@@ -12,6 +12,10 @@ const vehicleList = new mongoose.Schema(
         ref: "months_Details",
       },
     ],
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "UserList",
+    },
   },
   {
     timestamps: true,

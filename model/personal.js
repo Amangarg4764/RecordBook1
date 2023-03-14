@@ -12,6 +12,10 @@ const personalList = new mongoose.Schema(
         ref: "Personal_Month",
       },
     ],
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "UserList",
+    },
   },
   {
     timestamps: true,
