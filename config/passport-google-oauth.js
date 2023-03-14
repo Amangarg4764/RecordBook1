@@ -9,7 +9,9 @@ passport.use(
       clientID:
         "324409582740-1vnl2bll0485m29c6tbf3oca1aamo8le.apps.googleusercontent.com",
       clientSecret: "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",
-      callbackURL: "http://recordbook-itha.onrender.com/auth/google/callback",
+      callbackURL:
+        "http://localhost:8000/auth/google/callback" ||
+        "https://localhost:8000/auth/google/callback",
     },
     async function (accessToken, refreshToken, profile, done) {
       let user = await User.findOne({ email: profile.emails[0].value });
