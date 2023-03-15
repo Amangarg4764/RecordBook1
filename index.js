@@ -34,7 +34,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
-
+app.get("/profile", passport.checkAuthentication, function (req, res) {
+  return res.render("profile");
+});
 app.use("/", require("./router/index"));
 app.listen(port, function (err) {
   if (err) {

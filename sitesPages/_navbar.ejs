@@ -8,13 +8,31 @@
 <div class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href="#" class="navbar-brand">RecordBook</a>
+      <a href="/home" class="navbar-brand">RecordBook</a>
     </div>
-    <div class="flex1">
-      <p class="navbar-text">
-        Signed in as
-        <a href="/logout" class="navbar-link"> <%=user.name %></a>
-      </p>
+    <div class="flex1 dropdown">
+      <div class="flex2">
+        <div>
+          <p class="navbar-text">Signed in as <%=user.name %></p>
+        </div>
+        <span id="second">
+          <img src="<%= user.avatar %>" alt="user_avatar" />
+        </span>
+      </div>
+      <div class="dropdown-content">
+        <a href="/profile">Profile</a>
+        <a href="/logout">Logout</a>
+      </div>
     </div>
   </div>
 </div>
+<script>
+  var button = document.querySelector(".dropdown");
+  button.addEventListener("click", function (e) {
+    var a = document.querySelector(".dropdown-content").style;
+    a.display = a.display == "block" ? "none" : "block";
+    var b = document.querySelector(".flex2").style;
+    b.boxShadow = b.backgroundColor =
+      b.backgroundColor == "white" ? "#f8f8f8" : "white";
+  });
+</script>
