@@ -15,6 +15,9 @@ const userList = new mongoose.Schema(
       type: String,
       required: true,
     },
+    avatar: {
+      type: String,
+    },
     vlist: [
       {
         type: mongoose.Schema.Types.ObjectId,

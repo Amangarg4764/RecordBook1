@@ -32,10 +32,11 @@ a {
     text-decoration: none;
 
 }
-a span:hover{
-  text-decoration: none;
-}
+
 a:hover{
+    text-decoration: none;
+}
+.btn-show a:hover{
     text-decoration: none;
 }
 .btn-slide {
@@ -43,7 +44,6 @@ a:hover{
     min-height: 52px;
     max-height: fit-content;
     min-width: 50%;
-
     line-height: 50px;
     background: #fdfdfd;
     border: 2px solid;

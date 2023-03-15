@@ -66,59 +66,16 @@
       <h2 class="page-header"><%=data.title%></h2>
 
       <% for (i of data.child.reverse()){%>
-
-      <div class="btn btn-default btn-lg" role="button" style="margin: 5px">
-        <a
-          href="/getThisExpenseDetail/?id=<%=i.id%>&key=3"
-          style="text-decoration: none; color: black"
-        >
-          <h4>TS : ₹ <%=i.price%></h4>
-          <h3><%=i.title%></h3>
-        </a>
-        <button
-          class="btn btn-warning"
-          data-toggle="modal"
-          data-target="#myModal2<%=i._id%>"
-        >
-          Edit
-        </button>
-        <!-- Modal 1-->
-        <div class="modal fade" id="myModal2<%=i._id%>" role="dialog">
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-                <h4 class="modal-title">Update Month Name</h4>
-              </div>
-              <form
-                action="/updatePersonalMonth/?id=<%=i._id%>"
-                method="post"
-                class="form-group"
-              >
-                <div class="modal-body">
-                  <input
-                    type="text"
-                    name="title"
-                    class="form-control"
-                    value="<%=i.title%>"
-                    autofocus
-                    required
-                  />
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-success">Save</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <a href="/deletePersonalMonth/?id=<%=i._id%>"
-          ><button class="btn btn-danger">Delete</button></a
-        >
-      </div>
+      <!--varaiables-->
+      <% let getlink="/getThisExpenseDetail/?id="+i.id+"&key=3"; let
+      price=i.price; let name=i.title; let dataTarget="#myModal2"+i._id; let
+      dataTargetId="myModal2"+i._id; let content="Update Month Name"; let
+      updatelink="/updatePersonalMonth/?id="+i._id; let
+      deletelink="/deletePersonalMonth/?id="+i._id %>
+      <!-- partails cart2-->
+      <%-
+      include('_card2',{price:price,getlink:getlink,name:name,dataTarget:dataTarget,
+      dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});%>
       <%}%>
     </div>
   </body>
