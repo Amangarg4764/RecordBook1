@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Record Book</title>
-
     <link rel="stylesheet" href="/assest/css/home.css" />
   </head>
 
@@ -63,63 +62,18 @@
         <div class="col-sm-1"></div>
       </div>
     </div>
+
     <div class="container-fluid">
       <h2 class="page-header"><%=vmdata.vname%></h2>
 
       <% for (i of vmdata.months.reverse()){%>
-
-      <div class="btn btn-default btn-lg" role="button" style="margin: 5px">
-        <a
-          href="/getJAO/?id=<%=i._id%>"
-          style="text-decoration: none; color: black"
-        >
-          <h3><%=i.mname%></h3>
-        </a>
-        <button
-          class="btn btn-warning"
-          data-toggle="modal"
-          data-target="#myModal2<%=i._id%>"
-        >
-          Edit
-        </button>
-        <!-- Modal 1-->
-        <div class="modal fade" id="myModal2<%=i._id%>" role="dialog">
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-                <h4 class="modal-title">Update Month Name</h4>
-              </div>
-              <form
-                action="/updateMonth/?id=<%=i._id%>"
-                method="post"
-                class="form-group"
-              >
-                <div class="modal-body">
-                  <input
-                    type="text"
-                    name="title"
-                    class="form-control"
-                    value="<%=i.mname%>"
-                    autofocus
-                    required
-                  />
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-success">Save</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <a href="/deleteMonth/?id=<%=i._id%>"
-          ><button class="btn btn-danger">Delete</button></a
-        >
-      </div>
-      <%}%>
+      <!-- variables -->
+      <% let getlink = "/getJAO/?id="+i._id; let name = i.mname; let dataTarget
+      = "#myModal2"+i._id; let dataTargetId = "myModal2"+i._id; let content =
+      "Update Month Name"; let updatelink = "/updateMonth/?id="+i._id; let
+      deletelink = "/deleteMonth/?id="+i._id; %>
+      <%-include('_card1',{getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
+      %> <%}%>
     </div>
   </body>
 </html>

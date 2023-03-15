@@ -88,108 +88,22 @@
 
     <div class="container-fluid">
       <% for (i of vdata){%>
-      <div class="btn btn-default btn-lg" role="button" style="margin: 5px">
-        <a
-          href="/getMonths/?id=<%=i._id%>&vname=<%=i.vname%>"
-          style="text-decoration: none; color: black"
-          ><h3><%= i.vname %></h3></a
-        >
-        <button
-          class="btn btn-warning"
-          data-toggle="modal"
-          data-target="#myModal3<%=i._id%>"
-        >
-          Edit
-        </button>
-        <!-- Modal 1-->
-        <div class="modal fade" id="myModal3<%=i._id%>" role="dialog">
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-                <h4 class="modal-title">Update Vehical Name</h4>
-              </div>
-              <form
-                action="/updateVehicalName/?id=<%=i.id%>"
-                method="post"
-                class="form-group"
-              >
-                <div class="modal-body">
-                  <input
-                    type="text"
-                    name="title"
-                    class="form-control"
-                    value="<%=i.vname%>"
-                    autofocus
-                    required
-                  />
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-success">Save</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <a href="/deleteVehicle/?id=<%=i._id%>"
-          ><button class="btn btn-danger">Delete</button></a
-        >
-      </div>
-      <%}%> <% for (i of odata){%>
-      <div class="btn btn-default btn-lg" role="button" style="margin: 5px">
-        <a
-          href="/getPersonalMonth/?id=<%=i._id%>&vname=<%=i.title%>"
-          style="text-decoration: none; color: black"
-          ><h3><%= i.title %></h3></a
-        >
-        <button
-          class="btn btn-warning"
-          data-toggle="modal"
-          data-target="#myModal4<%=i._id%>"
-        >
-          Edit
-        </button>
-        <!-- Modal 1-->
-        <div class="modal fade" id="myModal4<%=i._id%>" role="dialog">
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-                <h4 class="modal-title">Update Other Name</h4>
-              </div>
-              <form
-                action="/updatePersonal/?id=<%=i.id%>"
-                method="post"
-                class="form-group"
-              >
-                <div class="modal-body">
-                  <input
-                    type="text"
-                    name="title"
-                    class="form-control"
-                    value="<%=i.title%>"
-                    autofocus
-                    required
-                  />
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-success">Save</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <a href="/deletePersonal/?id=<%=i._id%>"
-          ><button class="btn btn-danger">Delete</button></a
-        >
-      </div>
-      <%}%>
+      <!-- variables -->
+      <% let getlink = "/getMonths/?id="+i._id+"&vname="+i.vname; let name =
+      i.vname; let dataTarget= "#myModal3"+i._id; let dataTargetId =
+      "myModal3"+i._id; let content ="Update Vehical Name"; let updatelink =
+      "/updateVehicalName/?id="+i.id; let deletelink =
+      "/deleteVehicle/?id="+i._id; %>
+      <%-include('_card1',{getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
+      %> <%}%> <% for (i of odata){%>
+      <!-- variables -->
+      <% let getlink = "/getPersonalMonth/?id="+i._id+"&vname="+i.title; let
+      name =i.title; let dataTarget= "#myModal4"+i._id; let dataTargetId =
+      "myModal4"+i._id; let content ="Update Other Name"; let updatelink =
+      "/updatePersonal/?id="+i.id; let deletelink =
+      "/deletePersonal/?id="+i._id; %>
+      <%-include('_card1',{getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
+      %> <%}%>
     </div>
   </body>
 </html>
