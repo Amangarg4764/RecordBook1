@@ -1,0 +1,103 @@
+* {
+    padding: 0px;
+    margin: 0px;
+
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+img {
+    max-width: 100%;
+}
+
+#cust {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-show {
+
+    font-size: 20px;
+    text-align: center;
+    background-color: white;
+
+}
+
+a {
+    text-decoration: none;
+
+}
+a span:hover{
+  text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+.btn-slide {
+    display: block;
+    min-height: 52px;
+    max-height: fit-content;
+    min-width: 50%;
+
+    line-height: 50px;
+    background: #fdfdfd;
+    border: 2px solid;
+    transition: .5s;
+    border-radius: 50px;
+    font-size: 16px;
+}
+
+.service_messenger {
+    border-color: #0084ff;
+}
+
+.btn-slide span.circle {
+    display: block;
+    color: #fff;
+    position: relative;
+    float: left;
+    margin: 5px;
+    line-height: 40px;
+    height: 38px;
+    width: 40px;
+    top: 0;
+    left: 0;
+    transition: .5s;
+    border-radius: 50px;
+    background-color: #0084ff;
+}
+
+.btn-slide span.title,
+.btn-slide span.title-hover {
+    position: relative;
+    right: 5px;
+    margin: 0 auto;
+
+}
+
+.service_messenger span.title,
+.service_messenger span.title-hover {
+    color: #0084ff;
+
+}
+
+.btn-slide span.title-hover {
+    opacity: 0;
+    color: #fff;
+    display: none;
+}
+
+.btn-slide .title-hover i {
+    margin-right: 10px;
+}
+/*@media screen and (max-width: 680px) {
+    .btn-slide {
+        width: 90%;
+    }
+
+}*/

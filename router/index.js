@@ -16,6 +16,12 @@ router.use("/", require("./vmonth"));
 //CRUD operation on vehical
 router.use("/", require("./vehical"));
 //-------------------------------------------------------------------------------------------------------------------------------
+//google auth
+router.use("/auth/google", require("./auth_google"));
+
+//login page and logout
+router.use("/", require("./logins"));
+//---------------------------------------------------------------------------------------------------------------------------
 
 //CRUD operation on personal other
 router.use("/", require("./pother"));

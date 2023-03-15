@@ -35,37 +35,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
-//------------Login page----------------------------------------------------------------------------------
-//link on google button give
-
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-//get ans from google
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/" }),
-  function (req, res) {
-    return res.redirect("/home");
-  }
-);
-//if it true than go to home page or not then go to login page
-app.get("/", function (req, res) {
-  if (req.isAuthenticated()) {
-    return res.redirect("/home");
-  }
-  return res.render("login");
-});
-
-app.get("/logout", async function (req, res) {
-  await req.logout(req.user, function (err) {
-    if (err) return next(err);
-    res.redirect("/");
-  });
-});
-
-//-----------------------------------------------------------------------------------------------------------
 app.use("/", require("./router/index"));
 app.listen(port, function (err) {
   if (err) {
