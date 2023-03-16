@@ -1,0 +1,29 @@
+<button
+  class="btn btn-info"
+  data-toggle="modal"
+  data-target="<%= dataTarget %>"
+>
+  <%= name %>
+</button>
+<!-- Modal -->
+<div class="modal fade" id="<%= dataTargetId%>" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title"><%= content %></h4>
+      </div>
+      <form action="<%= addlink %>" method="post" class="form-group">
+        <div class="modal-body">
+          <input type="text" name="title" class="form-control" required />
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

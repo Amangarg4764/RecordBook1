@@ -14,52 +14,16 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="float: right">
       <div class="row">
-        <div class="col-sm-11">
-          <button
-            class="btn btn-info"
-            data-toggle="modal"
-            data-target="#myModal5"
-            style="float: right"
-          >
-            Add Month
-          </button>
-        </div>
-        <!-- Modal 1-->
-        <div class="modal fade" id="myModal5" role="dialog">
-          <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                  &times;
-                </button>
-                <h4 class="modal-title">Enter Month Name</h4>
-              </div>
-              <form
-                action="/addMonth/?vid=<%=vmdata._id%>"
-                method="post"
-                class="form-group"
-              >
-                <div class="modal-body">
-                  <label for="title">Enter Month Name</label>
-                  <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    class="form-control"
-                    required
-                  />
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-success">ADD</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
         <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+          <% let dataTarget="#myModal5"; let dataTargetId="myModal5"; let
+          name="Add Month"; let content="Enter Month Name"; let
+          addlink="/addMonth/?vid="+vmdata._id;%> <%-
+          include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
+          name:name,content:content,addlink:addlink})%>
+        </div>
       </div>
     </div>
 
