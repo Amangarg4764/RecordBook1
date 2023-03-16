@@ -58,6 +58,9 @@
                     <th class="col-sm-2">Amount</th>
                     <th class="col-sm-4">Operations</th></tr>
                     <%if(key==3){%>
+                        <%if(data.child.length==0){%>
+                            <tr class="row"><td class="col-sm-12" colspan="4">No data Avialable</td></tr>
+                        <%}else{%>
                         <%for(i of data.child.reverse()){%>
                             <tr id="<%=i._id%>" class="row"> 
                                 <td class="text-capitalize col-sm-4" ><%=i.title%></td>
@@ -75,8 +78,13 @@
                                 </form>
                             </tr>
                             <%}%>
-            
-                        <%}else{%>
+                            <%}%>
+                        <%}else{
+                            if(data.listOfThings.length==0){%>
+                                <tr class="row"><td class="col-sm-12" colspan="4">No data Avialable</td></tr>
+                            <%}else{%>
+
+                            
                 <%for(i of data.listOfThings.reverse()){%>
                     
                 
@@ -95,7 +103,7 @@
                         <td class="col-sm-4"><input type="submit" class="btn btn-info" role="button" value="SAVE"></td>
                     </form>
                 </tr>
-                <%}%>
+                <%}}%>
                 <%}%>
             </table>
             <script>

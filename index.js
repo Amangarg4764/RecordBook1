@@ -6,6 +6,7 @@ const passport = require("passport");
 const googleStrategy = require("./config/passport-google-oauth");
 
 const database = require("./config/mongoose");
+
 const Mongostore = require("connect-mongo");
 const session = require("express-session");
 const app = express();
@@ -34,9 +35,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
-app.get("/profile", passport.checkAuthentication, function (req, res) {
-  return res.render("profile");
-});
+
 app.use("/", require("./router/index"));
 app.listen(port, function (err) {
   if (err) {
