@@ -53,4 +53,10 @@ router.post(
   }
 );
 
+router.get("/deleteUser", async function (req, res) {
+  console.log("user");
+  // let us = await Userlist.findByIdAndDelete(req.query.id);
+  return res.redirect("back");
+});
+
 module.exports = router;

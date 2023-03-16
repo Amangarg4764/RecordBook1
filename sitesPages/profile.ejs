@@ -56,6 +56,9 @@
           </div>
         </div>
         <!-- New data-->
+        <h3 class="page-header" style="margin: 20px 0px; font-family: fangsong">
+          User Vehicle Details
+        </h3>
         <table class="table table-hover table-bordered">
           <tr class="row active">
             <th class="col-sm-6">Vehicle Name</th>
@@ -76,9 +79,15 @@
             data-toggle="collapse"
             data-target="#demo<%=i._id%>"
           >
-            <td class="col-sm-6"><%= i.vname%></td>
+            <td class="col-sm-6">
+              <a href="/getMonths/?id=<%=i.id%>"><%= i.vname%></a>
+            </td>
             <td class="col-sm-2"><%= i.months.length%></td>
-            <td class="col-sm-4">Op</td>
+            <td class="col-sm-4">
+              <a href="/deleteVehicle/?id=<%=i._id%>"
+                ><button class="btn btn-danger">Delete</button></a
+              >
+            </td>
           </tr>
           <%if(i.months.length==0){%>
           <tr id="demo<%=i._id%>" class="row active collapse">
@@ -103,10 +112,16 @@
                   data-toggle="collapse"
                   data-target="#demo<%=j._id%>"
                 >
-                  <td class="col-sm-3"><%= j.mname%></td>
+                  <td class="col-sm-3">
+                    <a href="/getJAO/?id=<%=j._id%>"><%= j.mname%></a>
+                  </td>
                   <td class="col-sm-3"><%= j.journeys.length%></td>
                   <td class="col-sm-3"><%= j.otherExp.length%></td>
-                  <td class="col-sm-3">Ope</td>
+                  <td class="col-sm-3">
+                    <a href="/deleteMonth/?id=<%= j.id%>"
+                      ><button class="btn btn-danger">Delete</button></a
+                    >
+                  </td>
                 </tr>
                 <%if(j.journeys.length==0 && j.otherExp.length ==0){%>
                 <tr class="row active collapse" id="demo<%=j._id%>">
@@ -140,12 +155,20 @@
                       </tr>
                       <%}else{%> <%for(k of j.journeys){%>
                       <tr class="row">
-                        <td class="col-sm-3"><%= k.jname%></td>
+                        <td class="col-sm-3">
+                          <a href="/getThisJourney/?id=<%=k._id%>"
+                            ><%= k.jname%></a
+                          >
+                        </td>
                         <td class="col-sm-3">
                           <%= k.arrival.toLocaleDateString()%>
                         </td>
                         <td class="col-sm-3"><%= k.profit%></td>
-                        <td class="col-sm-3">Ope</td>
+                        <td class="col-sm-3">
+                          <a href="/deleteThisJourney/?id=<%= k.id%>"
+                            ><button class="btn btn-danger">Delete</button></a
+                          >
+                        </td>
                       </tr>
                       <%}%> <%}%>
                     </table>
@@ -167,9 +190,17 @@
                       </tr>
                       <%}else{%> <%for(k of j.otherExp){%>
                       <tr class="row">
-                        <td class="col-sm-5"><%= k.oname%></td>
+                        <td class="col-sm-5">
+                          <a href="/getThisExpenseDetail/?id=<%= k.id%>"
+                            ><%= k.oname%></a
+                          >
+                        </td>
                         <td class="col-sm-4"><%= k.totalPrice%></td>
-                        <td class="col-sm-3">Ope</td>
+                        <td class="col-sm-3">
+                          <a href="/deleteOtherExpensive/?id=<%= k.id%>"
+                            ><button class="btn btn-danger">Delete</button></a
+                          >
+                        </td>
                       </tr>
 
                       <%}%><%}%>
@@ -182,8 +213,17 @@
           </tr>
           <%}}%>
         </table>
+        <h3 class="page-header" style="margin: 20px 0px; font-family: fangsong">
+          User Other Details
+        </h3>
 
-        <%=data.olist[0]%>
+        <div class="row" style="margin: 20px 40px; float: right">
+          <div class="col-sm-12">
+            <a href="/deleteUser/?id=<%=user.id%>"
+              ><button class="btn btn-danger">Delete Account</button></a
+            >
+          </div>
+        </div>
       </div>
     </div>
   </body>
