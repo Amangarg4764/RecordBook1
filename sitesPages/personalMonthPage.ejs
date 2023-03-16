@@ -28,8 +28,8 @@
     </div>
     <div class="container-fluid">
       <h2 class="page-header"><%=data.title%></h2>
-
-      <% for (i of data.child.reverse()){%>
+      <%if(data.child.length==0){%> <%- include('_nodata');%> <%}else{%> <% for
+      (i of data.child.reverse()){%>
       <!--varaiables-->
       <% let getlink="/getThisExpenseDetail/?id="+i.id+"&key=3"; let
       price=i.price; let name=i.title; let dataTarget="#myModal2"+i._id; let
@@ -40,7 +40,7 @@
       <%-
       include('_card2',{price:price,getlink:getlink,name:name,dataTarget:dataTarget,
       dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});%>
-      <%}%>
+      <%}%><%}%>
     </div>
   </body>
 </html>

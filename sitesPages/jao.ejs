@@ -82,7 +82,8 @@
     </div>
     <div class="container-fluid">
       <h2 class="page-header"><%=data.mname%></h2>
-      <% for (i of data.journeys.reverse()){%>
+      <%if(data.journeys.length == 0 && data.otherExp == 0){%> <%-
+      include('_nodata');%> <%}else{%> <% for (i of data.journeys.reverse()){%>
       <div class="btn btn-default btn-lg" role="button" style="margin: 5px">
         <a
           href="/getThisJourney/?id=<%=i.id%>"
@@ -106,7 +107,7 @@
       <%-
       include('_card2',{price:price,getlink:getlink,name:name,dataTarget:dataTarget,
       dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});%>
-      <%}%>
+      <%}%><%}%>
     </div>
   </body>
 </html>
