@@ -12,9 +12,9 @@
         <div class="container-fluid">
             <div class="row">
                 <%if(key==3){%>
-                    <div class="col-sm-12"><p><%=data.parent.title%> > <%=data.title%> </p></div>
+                    <div class="col-sm-12"><p><a href="/home">Home</a> > <a href="/getPersonalMonth/?id=<%=data.parent._id%>&vname=<%=data.parent.title%>"><%=data.parent.title%></a> > <a href="/getThisExpenseDetail/?id=<%=data._id%>&key=3"><%=data.title%></a> </p></div>
                 <%}else{%>
-                    <div class="col-sm-12"><p><%=data.mowner.vname.vname%> > <%=data.mowner.mname%> > <%= data.oname %></p></div>
+                    <div class="col-sm-12"><p><a href="/home">Home</a> > <a href="/getMonths/?id=<%=data.mowner.vname._id%>&vname=<%=data.mowner.vname.vname%>"><%=data.mowner.vname.vname%></a> > <a href="/getJAO/?id=<%=data.mowner._id%>"><%=data.mowner.mname%></a> > <a href="/getThisExpenseDetail/?id=<%=data._id%>"><%= data.oname %></a></p></div>
                 <%}%>
             </div>
         </div>

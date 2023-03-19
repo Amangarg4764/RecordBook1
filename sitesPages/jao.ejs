@@ -10,7 +10,14 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-          <p><%=data.vname.vname%> > <%=data.mname%></p>
+          <p>
+            <a href="/home">Home</a> >
+            <a
+              href="/getMonths/?id=<%=data.vname._id%>&vname=<%=data.vname.vname%>"
+              ><%=data.vname.vname%></a
+            >
+            > <a href="/getJAO/?id=<%=data._id%>"><%=data.mname%></a>
+          </p>
         </div>
       </div>
     </div>

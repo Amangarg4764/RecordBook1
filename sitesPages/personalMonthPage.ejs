@@ -10,7 +10,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-          <p><%=data.title%></p>
+          <p>
+            <a href="/home">Home</a> >
+            <a href="/getPersonalMonth/?id=<%=data._id%>&vname=<%=data.title%>"
+              ><%=data.title%></a
+            >
+          </p>
         </div>
       </div>
     </div>
