@@ -125,6 +125,8 @@
                     name="image"
                     id="imageOfPaper"
                     class="form-control"
+                    accept="image/*"
+                    multiple
                   />
                 </div>
 
@@ -303,14 +305,14 @@
             </table>
           </div>
           <div id="des_bar">
-            <label for="desc">Docs image</label><br />
-            <% if(data.image){%>
+            <label for="desc">Docs image (max 7 images)</label><br />
+            <% if(data.image.length!=0){ for(i of data.image){%>
             <img
-              src="/<%= data.image%>"
+              src="/<%= i%>"
               alt="docs image"
               width="250px"
               height="250px"
-            /><%}else{%>
+            /><%}}else{%>
             <p id="desc">No docs upto date !!</p>
             <%}%>
           </div>

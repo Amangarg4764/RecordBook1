@@ -61,15 +61,21 @@ router.get(
 router.post(
   "/updateThisJourney",
   passport.checkAuthentication,
-  upload.single("image"),
+  upload.array("image", 7),
   async function (req, res) {
     let prevdata = await journeyList.findById(req.query.id);
     let destImage = prevdata.image;
-    if (req.file != undefined) {
-      if (destImage != undefined) {
-        fs.unlinkSync(path.join(__dirname, "../", destImage));
+    if (req.files.length != 0) {
+      if (destImage.length != 0) {
+        for (i of destImage) {
+          fs.unlinkSync(path.join(__dirname, "../", i));
+        }
       }
-      destImage = req.file.path;
+      let newArray = [];
+      for (i of req.files) {
+        newArray.push(i.path);
+      }
+      destImage = newArray;
     }
 
     let data = await journeyList.findByIdAndUpdate(req.query.id, {
@@ -100,8 +106,10 @@ router.get(
   async function (req, res) {
     let data = await OtherThisList.deleteMany({ listowner: req.query.id });
     let jdata = await journeyList.findByIdAndDelete(req.query.id);
-    if (jdata.image) {
-      fs.unlinkSync(path.join(__dirname, "../", jdata.image));
+    if (jdata.image.length != 0) {
+      for (i of jdata.image) {
+        fs.unlinkSync(path.join(__dirname, "../", i));
+      }
     }
     await MonthsDetails.findByIdAndUpdate(jdata.mowner, {
       $pull: { journeys: req.query.id },
