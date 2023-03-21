@@ -13,6 +13,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "sitesPages"));
 app.use("/assest", express.static(path.join(__dirname, "assests")));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParse());
 app.use(
