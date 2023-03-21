@@ -37,6 +37,10 @@ app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 
 app.use("/", require("./router/index"));
+//if url is not exit
+app.get("/*", function (req, res) {
+  return res.send("/home");
+});
 app.listen(port, function (err) {
   if (err) {
     console.log("Error in starting the server :", err);

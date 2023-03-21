@@ -29,4 +29,6 @@ router.use("/", require("./pother"));
 //CRUD operation on personal month
 router.use("/", require("./omonth"));
 
+//CRUD operation on profile
+router.use("/", require("./profile"));
 module.exports = router;
