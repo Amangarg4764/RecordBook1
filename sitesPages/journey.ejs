@@ -128,6 +128,7 @@
                     accept="image/*"
                     multiple
                   />
+                  <div id="imageOfPaper1"></div>
                 </div>
 
                 <div class="modal-footer">
@@ -338,6 +339,20 @@
         document.getElementById(val1).style.display = "none";
         document.getElementById("hide" + val1).style.display = "contents";
       }
+    </script>
+    <script>
+      var Element = document.querySelector("#imageOfPaper");
+      var div = document.querySelector("#imageOfPaper1");
+      Element.addEventListener("change", function () {
+        div.innerHTML = null;
+        for (i of Element.files) {
+          var img = document.createElement("img");
+          var url = URL.createObjectURL(i);
+          img.src = url;
+          img.style = "width: 150px; height: 150px";
+          div.appendChild(img);
+        }
+      });
     </script>
   </body>
 </html>
