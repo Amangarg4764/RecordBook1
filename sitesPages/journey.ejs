@@ -179,10 +179,10 @@
             <label for="desc">Expensive</label><br />
             <table class="table">
               <tr class="row">
-                <th class="col-sm-4">Date</th>
-                <th class="col-sm-2">Title</th>
-                <th class="col-sm-2">Price</th>
-                <th class="col-sm-4"></th>
+                <th class="col-lg-3">Date</th>
+                <th class="col-lg-4">Title</th>
+                <th class="col-lg-3">Price</th>
+                <th class="col-lg-2"></th>
               </tr>
               <tr class="row">
                 <form
@@ -191,7 +191,7 @@
                   class="form-group"
                 >
                   <% var iu=new Date() %>
-                  <td class="col-sm-4">
+                  <td class="col-lg-3">
                     <input
                       id="dateOfInves"
                       type="date"
@@ -201,7 +201,7 @@
                       required
                     />
                   </td>
-                  <td class="col-sm-2">
+                  <td class="col-lg-4">
                     <input
                       type="text"
                       name="title"
@@ -209,7 +209,7 @@
                       required
                     />
                   </td>
-                  <td class="col-sm-2">
+                  <td class="col-lg-3">
                     <input
                       type="number"
                       name="price"
@@ -217,7 +217,7 @@
                       required
                     />
                   </td>
-                  <td class="col-sm-4">
+                  <td class="col-lg-2">
                     <input type="submit" value="ADD" class="btn btn-success" />
                   </td>
                 </form>
@@ -225,16 +225,16 @@
 
               <% if(data.expensive.length == 0){ %>
               <tr class="row">
-                <td class="col-sm-10">No expensive avialable</td>
+                <td class="col-lg-10">No expensive avialable</td>
               </tr>
               <% } else {%> <%for(i of data.expensive){%>
               <tr class="row" id="<%=i._id%>">
-                <td class="col-sm-4">
+                <td class="col-lg-3">
                   <%= i.dateOfInves.toLocaleDateString() %>
                 </td>
-                <td class="text-capitalize col-sm-2"><%= i.title %></td>
-                <td class="col-sm-2">₹ <%= i.price %></td>
-                <td class="col-sm-4">
+                <td class="text-capitalize col-lg-4"><%= i.title %></td>
+                <td class="col-lg-3">₹ <%= i.price %></td>
+                <td class="col-lg-2">
                   <a href="/deleteThisExpenseDetail/?id=<%=i._id%>&key=1"
                     ><button class="btn btn-danger">Delete</button></a
                   >
@@ -252,16 +252,7 @@
                   method="POST"
                   class="form-group"
                 >
-                  <td class="col-sm-4">
-                    <input
-                      type="text"
-                      name="title"
-                      value="<%=i.title%>"
-                      class="form-control"
-                      required
-                    />
-                  </td>
-                  <td class="col-sm-2">
+                  <td class="col-lg-3">
                     <input
                       id="dateOfInves"
                       type="date"
@@ -271,7 +262,16 @@
                       required
                     />
                   </td>
-                  <td class="col-sm-2">
+                  <td class="col-lg-4">
+                    <input
+                      type="text"
+                      name="title"
+                      value="<%=i.title%>"
+                      class="form-control"
+                      required
+                    />
+                  </td>
+                  <td class="col-lg-3">
                     <input
                       type="number"
                       name="price"
@@ -280,7 +280,7 @@
                       required
                     />
                   </td>
-                  <td class="col-sm-4">
+                  <td class="col-lg-2">
                     <input
                       type="submit"
                       class="btn btn-info"
