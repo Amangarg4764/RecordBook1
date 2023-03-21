@@ -9,7 +9,8 @@ const journeyList = require("../model/addJourney");
 const OtherThisList = require("../model/other");
 const Userlist = require("../model/user");
 const PersonalMonth = require("../model/personalMonth");
-
+const path = require("path");
+const fs = require("fs");
 //-----------------------------------------------------------------------------------------------------------
 router.get("/profile", passport.checkAuthentication, async function (req, res) {
   let data = await Userlist.findById(req.query.id)
@@ -62,6 +63,11 @@ router.get(
         let jdata = await journeyList.find({ mowner: i });
         for (j of jdata) {
           let c = await OtherThisList.deleteMany({ listowner: j.id });
+          if (j.image.length != 0) {
+            for (q of j.image) {
+              fs.unlinkSync(path.join(__dirname, "../", q));
+            }
+          }
         }
         let deddata = await journeyList.deleteMany({ mowner: i });
 

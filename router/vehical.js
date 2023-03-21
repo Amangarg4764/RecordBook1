@@ -8,7 +8,8 @@ const journeyList = require("../model/addJourney");
 const OtherThisList = require("../model/other");
 const UserList = require("../model/user");
 const passport = require("passport");
-
+const path = require("path");
+const fs = require("fs");
 //CRUD operation on vehical
 router.get("/home", passport.checkAuthentication, async function (req, res) {
   var vdata = await VehicleList.find({ user: req.user.id });
@@ -62,6 +63,11 @@ router.get(
       let jdata = await journeyList.find({ mowner: i });
       for (j of jdata) {
         let c = await OtherThisList.deleteMany({ listowner: j.id });
+        if (j.image.length != 0) {
+          for (k of j.image) {
+            fs.unlinkSync(path.join(__dirname, "../", k));
+          }
+        }
       }
       let deddata = await journeyList.deleteMany({ mowner: i });
 

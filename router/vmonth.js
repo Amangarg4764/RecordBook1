@@ -6,6 +6,8 @@ const OtherList = require("../model/otherThings");
 const journeyList = require("../model/addJourney");
 const OtherThisList = require("../model/other");
 const passport = require("passport");
+const path = require("path");
+const fs = require("fs");
 //CRUD operation on vehical month
 router.get(
   "/getMonths",
@@ -61,6 +63,11 @@ router.get(
     let jdata = await journeyList.find({ mowner: req.query.id });
     for (i of jdata) {
       let c = await OtherThisList.deleteMany({ listowner: i.id });
+      if (i.image.length != 0) {
+        for (k of i.image) {
+          fs.unlinkSync(path.join(__dirname, "../", k));
+        }
+      }
     }
     let deddata = await journeyList.deleteMany({ mowner: req.query.id });
 
