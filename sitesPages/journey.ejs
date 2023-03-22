@@ -119,7 +119,7 @@
                     value="<%=data.weightlossPrice%>"
                     required
                   />
-                  <label for="imageOfPaper">Image of docs</label>
+                  <label for="imageOfPaper">Image of docs (max 7 images)</label>
                   <input
                     type="file"
                     name="image"
@@ -128,7 +128,7 @@
                     accept="image/*"
                     multiple
                   />
-                  <div id="imageOfPaper1"></div>
+                  <div id="imageOfPaper1" class="row"></div>
                 </div>
 
                 <div class="modal-footer">
@@ -307,15 +307,21 @@
           </div>
           <div id="des_bar">
             <label for="desc">Docs image (max 7 images)</label><br />
-            <% if(data.image.length!=0){ for(i of data.image){%>
-            <img
-              src="/<%= i%>"
-              alt="docs image"
-              width="250px"
-              height="250px"
-            /><%}}else{%>
-            <p id="desc">No docs upto date !!</p>
-            <%}%>
+            <div class="row">
+              <% if(data.image.length!=0){ for(i of data.image){%>
+              <div class="col-sm-6 col-md-3">
+                <img
+                  src="/<%= i%>"
+                  alt="docs image"
+                  width="100%"
+                  height="100%"
+                  style="border: 1px solid lightgrey; border-radius: 5%"
+                />
+              </div>
+              <%}}else{%>
+              <p id="desc">No docs upto date !!</p>
+              <%}%>
+            </div>
           </div>
           <div
             id="des_bar"
@@ -349,8 +355,13 @@
           var img = document.createElement("img");
           var url = URL.createObjectURL(i);
           img.src = url;
-          img.style = "width: 150px; height: 150px";
-          div.appendChild(img);
+          img.style =
+            "width: 100%; height: 100%; border: 1px solid lightgrey; border-radius:5%;";
+          var ediv = document.createElement("div");
+          ediv.appendChild(img);
+          ediv.classList.add("col-6");
+          ediv.classList.add("col-md-3");
+          div.appendChild(ediv);
         }
       });
     </script>
