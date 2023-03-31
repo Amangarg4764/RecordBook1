@@ -16,14 +16,20 @@
         </button>
         <h4 class="modal-title"><%= content %></h4>
       </div>
-      <form action="<%= addlink %>" method="post" class="form-group">
+      <form id="formadd" class="form-group">
         <div class="modal-body">
           <input type="text" name="title" class="form-control" required />
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success">Add</button>
+          <button
+            class="btn btn-success"
+            onclick="add('<%= addlink %>','<%= dataTarget%>');"
+          >
+            Add
+          </button>
         </div>
       </form>
     </div>
   </div>
 </div>
+<script src="/assest/js/addpopup.js"></script>

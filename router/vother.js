@@ -26,6 +26,11 @@ router.post(
     let mdata = await MonthsDetails.findById(req.query.id);
     mdata.otherExp.push(otherdata.id);
     mdata.save();
+    if (req.xhr) {
+      return res.status(200).json({
+        data: otherdata,
+      });
+    }
     return res.redirect("back");
   }
 );

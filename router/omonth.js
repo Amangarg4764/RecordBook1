@@ -27,6 +27,11 @@ router.post(
     });
     data.child.push(subdata.id);
     data.save();
+    if (req.xhr) {
+      return res.status(200).json({
+        data: subdata,
+      });
+    }
     return res.redirect("back");
   }
 );

@@ -33,7 +33,11 @@ router.post(
     });
     vfdata.months.push(newdata.id);
     vfdata.save();
-
+    if (req.xhr) {
+      return res.status(200).json({
+        data: newdata,
+      });
+    }
     return res.redirect("back");
   }
 );

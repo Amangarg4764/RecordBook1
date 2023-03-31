@@ -28,6 +28,11 @@ router.post(
     let user = await UserList.findById(req.user.id);
     user.vlist.push(veh.id);
     user.save();
+    if (req.xhr) {
+      return res.status(200).json({
+        data: veh,
+      });
+    }
     return res.redirect("back");
   }
 );
