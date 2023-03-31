@@ -31,6 +31,7 @@ router.post(
     if (req.xhr) {
       return res.status(200).json({
         data: veh,
+        base: "vehicle",
       });
     }
     return res.redirect("back");

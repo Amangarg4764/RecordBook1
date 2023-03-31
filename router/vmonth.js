@@ -36,6 +36,7 @@ router.post(
     if (req.xhr) {
       return res.status(200).json({
         data: newdata,
+        base: "vehicleMonth",
       });
     }
     return res.redirect("back");

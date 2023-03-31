@@ -18,7 +18,8 @@ function add(addlink, boxid) {
         data: formval.serialize(),
         success: function (data) {
           console.log("Sucessful add to datbase");
-          console.log(data.data);
+          let dom = domObject(data);
+          $("#togglebox").prepend(dom);
         },
         error: function (err) {
           console.log("Error add to datbase");

@@ -34,15 +34,18 @@
 
     <div class="container-fluid">
       <h2 class="page-header"><%=vmdata.vname%></h2>
-      <% if(vmdata.months.length==0){%> <%- include('_nodata');%> <%}else{%> <%
-      for (i of vmdata.months.reverse()){%>
-      <!-- variables -->
-      <% let getlink = "/getJAO/?id="+i._id; let name = i.mname; let dataTarget
-      = "#myModal2"+i._id; let dataTargetId = "myModal2"+i._id; let content =
-      "Update Month Name"; let updatelink = "/updateMonth/?id="+i._id; let
-      deletelink = "/deleteMonth/?id="+i._id; %>
-      <%-include('_card1',{getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
-      %> <%}%><%}%>
+      <div id="togglebox">
+        <% if(vmdata.months.length==0){%> <%- include('_nodata');%> <%}else{%>
+        <% for (i of vmdata.months.reverse()){%>
+        <!-- variables -->
+        <% let getlink = "/getJAO/?id="+i._id; let name = i.mname; let
+        dataTarget = "#myModal2"+i._id; let dataTargetId = "myModal2"+i._id; let
+        content = "Update Month Name"; let updatelink =
+        "/updateMonth/?id="+i._id; let deletelink = "/deleteMonth/?id="+i._id;
+        %>
+        <%-include('_card1',{getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
+        %> <%}%><%}%>
+      </div>
     </div>
   </body>
 </html>

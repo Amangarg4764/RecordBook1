@@ -20,6 +20,7 @@ router.post(
     if (req.xhr) {
       return res.status(200).json({
         data: po,
+        base: "personal",
       });
     }
     return res.redirect("back");
