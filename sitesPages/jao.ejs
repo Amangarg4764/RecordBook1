@@ -1,83 +1,72 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Record Book</title>
-
-    <link rel="stylesheet" href="/assest/css/home.css" />
-  </head>
-  <body>
-    <%- include('_navbar'); %>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12">
-          <p>
-            <a href="/home">Home</a> >
-            <a
-              href="/getMonths/?id=<%=data.vname._id%>&vname=<%=data.vname.vname%>"
-              ><%=data.vname.vname%></a
-            >
-            > <a href="/getJAO/?id=<%=data._id%>"><%=data.mname%></a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row" style="float: right">
-        <div class="col-sm-11">
-          <%- include('_popup2') %>
-          <!-- variable -->
-          <% let dataTarget="#myModal1"; let dataTargetId="myModal1"; let
-          name="Add Other Expensive"; let content="Enter Other Expensive Name";
-          let addlink="/addOtherExpensive/?id="+data._id;%>
-          <!--partails-->
-          <%-
-          include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
-          name:name,content:content,addlink:addlink})%>
-        </div>
-
-        <div class="col-sm-1"></div>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <h2 class="page-header"><%=data.mname%></h2>
-      <div id="togglebox">
-        <%if(data.journeys.length == 0 && data.otherExp == 0){%> <%-
-        include('_nodata');%> <%}else{%> <% for (i of
-        data.journeys.reverse()){%>
-        <div
-          class="btn btn-default btn-lg"
-          role="button"
-          id="<%= i._id%>"
-          style="margin: 5px"
-        >
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <p>
+          <a href="/home">Home</a> >
           <a
-            href="/getThisJourney/?id=<%=i.id%>"
-            style="text-decoration: none; color: black"
+            href="/getMonths/?id=<%=data.vname._id%>&vname=<%=data.vname.vname%>"
+            ><%=data.vname.vname%></a
           >
-            <p>Profit : ₹ <%=i.profit%></p>
-            <h3 class="text-capitalize"><%=i.jname%></h3></a
-          >
-          <button
-            class="btn btn-danger"
-            onclick="removeElement('/deleteThisJourney/?id=<%=i.id%>','<%= i._id%>');"
-          >
-            Delete
-          </button>
-        </div>
-        <script src="/assest/js/removeElement.js"></script>
-        <%}%> <% for (i of data.otherExp.reverse()){%>
-        <!--varaiables-->
-        <% let getlink="/getThisExpenseDetail/?id="+i.id; let
-        price=i.totalPrice; let name=i.oname; let dataTarget="#myModal"+i._id;
-        let dataTargetId="myModal"+i._id; let content="Update Name"; let
-        updatelink="/updateOtherExpensive/?id="+i._id; let
-        deletelink="/deleteOtherExpensive/?id="+i._id; let domid=i._id; %>
-        <!-- partails cart2-->
-        <%-
-        include('_card2',{domid:domid,price:price,getlink:getlink,name:name,dataTarget:dataTarget,
-        dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});%>
-        <%}%><%}%>
+          > <a href="/getJAO/?id=<%=data._id%>"><%=data.mname%></a>
+        </p>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+  <div class="container-fluid">
+    <div class="row" style="float: right">
+      <div class="col-sm-11">
+        <%- include('_popup2') %>
+        <!-- variable -->
+        <% let dataTarget="#myModal1"; let dataTargetId="myModal1"; let
+        name="Add Other Expensive"; let content="Enter Other Expensive Name";
+        let addlink="/addOtherExpensive/?id="+data._id;%>
+        <!--partails-->
+        <%- include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
+        name:name,content:content,addlink:addlink})%>
+      </div>
+
+      <div class="col-sm-1"></div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <h2 class="page-header"><%=data.mname%></h2>
+    <div id="togglebox">
+      <%if(data.journeys.length == 0 && data.otherExp == 0){%> <%-
+      include('_nodata');%> <%}else{%> <% for (i of data.journeys.reverse()){%>
+      <div
+        class="btn btn-default btn-lg"
+        role="button"
+        id="<%= i._id%>"
+        style="margin: 5px"
+      >
+        <a
+          href="/getThisJourney/?id=<%=i.id%>"
+          style="text-decoration: none; color: black"
+        >
+          <p>Profit : ₹ <%=i.profit%></p>
+          <h3 class="text-capitalize"><%=i.jname%></h3></a
+        >
+        <button
+          class="btn btn-danger"
+          onclick="removeElement('/deleteThisJourney/?id=<%=i.id%>','<%= i._id%>');"
+        >
+          Delete
+        </button>
+      </div>
+      <script src="/assest/js/removeElement.js"></script>
+      <%}%> <% for (i of data.otherExp.reverse()){%>
+      <!--varaiables-->
+      <% let getlink="/getThisExpenseDetail/?id="+i.id; let price=i.totalPrice;
+      let name=i.oname; let dataTarget="#myModal"+i._id; let
+      dataTargetId="myModal"+i._id; let content="Update Name"; let
+      updatelink="/updateOtherExpensive/?id="+i._id; let
+      deletelink="/deleteOtherExpensive/?id="+i._id; let domid=i._id; %>
+      <!-- partails cart2-->
+      <%-
+      include('_card2',{domid:domid,price:price,getlink:getlink,name:name,dataTarget:dataTarget,
+      dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});%>
+      <%}%><%}%>
+    </div>
+  </div>
+</div>

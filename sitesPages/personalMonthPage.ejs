@@ -1,53 +1,44 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Record Book</title>
-
-    <link rel="stylesheet" href="/assest/css/home.css" />
-  </head>
-  <body>
-    <%- include('_navbar'); %>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12">
-          <p>
-            <a href="/home">Home</a> >
-            <a href="/getPersonalMonth/?id=<%=data._id%>&vname=<%=data.title%>"
-              ><%=data.title%></a
-            >
-          </p>
-        </div>
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <p>
+          <a href="/home">Home</a> >
+          <a href="/getPersonalMonth/?id=<%=data._id%>&vname=<%=data.title%>"
+            ><%=data.title%></a
+          >
+        </p>
       </div>
     </div>
-    <div class="container-fluid" style="float: right">
-      <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10">
-          <% let dataTarget="#myModal6"; let dataTargetId="myModal6"; let
-          name="Add Month"; let content="Enter Month Name"; let
-          addlink="/addPersonalMonth/?id="+data._id;%> <%-
-          include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
-          name:name,content:content,addlink:addlink})%>
-        </div>
+  </div>
+  <div class="container-fluid" style="float: right">
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <% let dataTarget="#myModal6"; let dataTargetId="myModal6"; let
+        name="Add Month"; let content="Enter Month Name"; let
+        addlink="/addPersonalMonth/?id="+data._id;%> <%-
+        include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
+        name:name,content:content,addlink:addlink})%>
       </div>
     </div>
-    <div class="container-fluid">
-      <h2 class="page-header"><%=data.title%></h2>
-      <div id="togglebox">
-        <%if(data.child.length==0){%> <%- include('_nodata');%> <%}else{%> <%
-        for (i of data.child.reverse()){%>
-        <!--varaiables-->
-        <% let getlink="/getThisExpenseDetail/?id="+i.id+"&key=3"; let
-        price=i.price; let name=i.title; let dataTarget="#myModal2"+i._id; let
-        dataTargetId="myModal2"+i._id; let content="Update Month Name"; let
-        updatelink="/updatePersonalMonth/?id="+i._id; let
-        deletelink="/deletePersonalMonth/?id="+i._id; let domid=i._id; %>
-        <!-- partails cart2-->
-        <%-
-        include('_card2',{domid:domid,price:price,getlink:getlink,name:name,dataTarget:dataTarget,
-        dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});%>
-        <%}%><%}%>
-      </div>
+  </div>
+  <div class="container-fluid">
+    <h2 class="page-header"><%=data.title%></h2>
+    <div id="togglebox">
+      <%if(data.child.length==0){%> <%- include('_nodata');%> <%}else{%> <% for
+      (i of data.child.reverse()){%>
+      <!--varaiables-->
+      <% let getlink="/getThisExpenseDetail/?id="+i.id+"&key=3"; let
+      price=i.price; let name=i.title; let dataTarget="#myModal2"+i._id; let
+      dataTargetId="myModal2"+i._id; let content="Update Month Name"; let
+      updatelink="/updatePersonalMonth/?id="+i._id; let
+      deletelink="/deletePersonalMonth/?id="+i._id; let domid=i._id; %>
+      <!-- partails cart2-->
+      <%-
+      include('_card2',{domid:domid,price:price,getlink:getlink,name:name,dataTarget:dataTarget,
+      dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});%>
+      <%}%><%}%>
     </div>
-  </body>
-</html>
+  </div>
+</div>

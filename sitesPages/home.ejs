@@ -1,55 +1,47 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Record Book</title>
-
-    <link rel="stylesheet" href="/assest/css/home.css" />
-  </head>
-  <body>
-    <%- include('_navbar'); %>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12">
-          <p><a href="/home">Home</a></p>
-        </div>
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <p><a href="/home">Home</a></p>
       </div>
     </div>
-    <div class="container-fluid">
-      <div class="row" style="float: right">
-        <div class="col-sm-11">
-          <% let dataTarget="#myModal1"; let dataTargetId="myModal1"; let
-          name="Add Vehicle"; let content="Add New Vehicle name"; let
-          addlink="/addVehicle";%> <%-
-          include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
-          name:name,content:content,addlink:addlink})%> <%
-          dataTarget="#myModal2"; dataTargetId="myModal2"; name="Add Other";
-          content="Enter Other Name"; addlink="/addPersonal";%> <%-
-          include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
-          name:name,content:content,addlink:addlink})%>
-        </div>
-        <div class="col-sm-1"></div>
-      </div>
-    </div>
+  </div>
 
-    <div class="container-fluid" id="togglebox">
-      <% if(vdata.length == 0 && odata.length == 0 ){%> <%- include('_nodata');
-      %> <%}else{%> <% for (i of vdata){%>
-      <!-- variables -->
-      <% let getlink = "/getMonths/?id="+i._id+"&vname="+i.vname; let name =
-      i.vname; let dataTarget= "#myModal3"+i._id; let dataTargetId =
-      "myModal3"+i._id; let content ="Update Vehical Name"; let updatelink =
-      "/updateVehicalName/?id="+i.id; let deletelink =
-      "/deleteVehicle/?id="+i._id; let domid=i._id; %>
-      <%-include('_card1',{domid:domid,getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
-      %> <%}%> <% for (i of odata){%>
-      <!-- variables -->
-      <% let getlink = "/getPersonalMonth/?id="+i._id+"&vname="+i.title; let
-      name =i.title; let dataTarget= "#myModal4"+i._id; let dataTargetId =
-      "myModal4"+i._id; let content ="Update Other Name"; let updatelink =
-      "/updatePersonal/?id="+i.id; let deletelink =
-      "/deletePersonal/?id="+i._id; let domid=i._id;%>
-      <%-include('_card1',{domid:domid,getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
-      %> <%}%><%}%>
+  <div class="container-fluid">
+    <div class="row" style="float: right">
+      <div class="col-sm-11">
+        <% let dataTarget="#myModal1"; let dataTargetId="myModal1"; let
+        name="Add Vehicle"; let content="Add New Vehicle name"; let
+        addlink="/addVehicle";%> <%-
+        include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
+        name:name,content:content,addlink:addlink})%> <% dataTarget="#myModal2";
+        dataTargetId="myModal2"; name="Add Other"; content="Enter Other Name";
+        addlink="/addPersonal";%> <%-
+        include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
+        name:name,content:content,addlink:addlink})%>
+      </div>
+      <div class="col-sm-1"></div>
     </div>
-  </body>
-</html>
+  </div>
+
+  <div class="container-fluid" id="togglebox">
+    <% if(vdata.length == 0 && odata.length == 0 ){%> <%- include('_nodata'); %>
+    <%}else{%> <% for (i of vdata){%>
+    <!-- variables -->
+    <% let getlink = "/getMonths/?id="+i._id+"&vname="+i.vname; let name =
+    i.vname; let dataTarget= "#myModal3"+i._id; let dataTargetId =
+    "myModal3"+i._id; let content ="Update Vehical Name"; let updatelink =
+    "/updateVehicalName/?id="+i.id; let deletelink =
+    "/deleteVehicle/?id="+i._id; let domid=i._id; %>
+    <%-include('_card1',{domid:domid,getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
+    %> <%}%> <% for (i of odata){%>
+    <!-- variables -->
+    <% let getlink = "/getPersonalMonth/?id="+i._id+"&vname="+i.title; let name
+    =i.title; let dataTarget= "#myModal4"+i._id; let dataTargetId =
+    "myModal4"+i._id; let content ="Update Other Name"; let updatelink =
+    "/updatePersonal/?id="+i.id; let deletelink = "/deletePersonal/?id="+i._id;
+    let domid=i._id;%>
+    <%-include('_card1',{domid:domid,getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
+    %> <%}%><%}%>
+  </div>
+</div>

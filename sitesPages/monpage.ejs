@@ -1,51 +1,41 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Record Book</title>
-    <link rel="stylesheet" href="/assest/css/home.css" />
-  </head>
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <p>
+          <a href="/home">Home</a> >
+          <a href="/getMonths/?id=<%=vmdata._id%>&vname=<%=vmdata.vname%>"
+            ><%=vmdata.vname%></a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" style="float: right">
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <% let dataTarget="#myModal5"; let dataTargetId="myModal5"; let
+        name="Add Month"; let content="Enter Month Name"; let
+        addlink="/addMonth/?vid="+vmdata._id;%> <%-
+        include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
+        name:name,content:content,addlink:addlink})%>
+      </div>
+    </div>
+  </div>
 
-  <body>
-    <%- include('_navbar'); %>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12">
-          <p>
-            <a href="/home">Home</a> >
-            <a href="/getMonths/?id=<%=vmdata._id%>&vname=<%=vmdata.vname%>"
-              ><%=vmdata.vname%></a
-            >
-          </p>
-        </div>
-      </div>
+  <div class="container-fluid">
+    <h2 class="page-header"><%=vmdata.vname%></h2>
+    <div id="togglebox">
+      <% if(vmdata.months.length==0){%> <%- include('_nodata');%> <%}else{%> <%
+      for (i of vmdata.months.reverse()){%>
+      <!-- variables -->
+      <% let getlink = "/getJAO/?id="+i._id; let name = i.mname; let dataTarget
+      = "#myModal2"+i._id; let dataTargetId = "myModal2"+i._id; let content =
+      "Update Month Name"; let updatelink = "/updateMonth/?id="+i._id; let
+      deletelink = "/deleteMonth/?id="+i._id; let domid=i._id; %>
+      <%-include('_card1',{domid:domid,getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
+      %> <%}%><%}%>
     </div>
-    <div class="container-fluid" style="float: right">
-      <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10">
-          <% let dataTarget="#myModal5"; let dataTargetId="myModal5"; let
-          name="Add Month"; let content="Enter Month Name"; let
-          addlink="/addMonth/?vid="+vmdata._id;%> <%-
-          include('_popup1',{dataTarget:dataTarget,dataTargetId:dataTargetId,
-          name:name,content:content,addlink:addlink})%>
-        </div>
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <h2 class="page-header"><%=vmdata.vname%></h2>
-      <div id="togglebox">
-        <% if(vmdata.months.length==0){%> <%- include('_nodata');%> <%}else{%>
-        <% for (i of vmdata.months.reverse()){%>
-        <!-- variables -->
-        <% let getlink = "/getJAO/?id="+i._id; let name = i.mname; let
-        dataTarget = "#myModal2"+i._id; let dataTargetId = "myModal2"+i._id; let
-        content = "Update Month Name"; let updatelink =
-        "/updateMonth/?id="+i._id; let deletelink = "/deleteMonth/?id="+i._id;
-        let domid=i._id; %>
-        <%-include('_card1',{domid:domid,getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
-        %> <%}%><%}%>
-      </div>
-    </div>
-  </body>
-</html>
+  </div>
+</div>

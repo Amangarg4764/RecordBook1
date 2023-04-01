@@ -1,6 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const expressLayout = require("express-ejs-layouts");
 
+//google auth
+router.use("/auth/google", require("./auth_google"));
+
+//login page and logout
+router.use("/", require("./logins"));
+
+router.use(expressLayout);
+//------------------------------------------------------------------------------------------
 //CRUD operation on particular other for all three i.e vehical.month.journey.other, vehical.month.vother.other , other.month.pother.other
 router.use("/", require("./other"));
 
@@ -15,12 +24,6 @@ router.use("/", require("./vmonth"));
 
 //CRUD operation on vehical
 router.use("/", require("./vehical"));
-//-------------------------------------------------------------------------------------------------------------------------------
-//google auth
-router.use("/auth/google", require("./auth_google"));
-
-//login page and logout
-router.use("/", require("./logins"));
 //---------------------------------------------------------------------------------------------------------------------------
 
 //CRUD operation on personal other
