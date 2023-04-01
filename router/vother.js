@@ -43,6 +43,11 @@ router.post(
     await OtherList.findByIdAndUpdate(req.query.id, {
       oname: req.body.title.toUpperCase(),
     });
+    if (req.xhr) {
+      return res.status(200).json({
+        data: req.query.id,
+      });
+    }
     return res.redirect("back");
   }
 );

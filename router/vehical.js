@@ -45,6 +45,11 @@ router.post(
     await VehicleList.findByIdAndUpdate(req.query.id, {
       vname: req.body.title.toUpperCase(),
     });
+    if (req.xhr) {
+      return res.status(200).json({
+        data: req.query.id,
+      });
+    }
     return res.redirect("back");
   }
 );

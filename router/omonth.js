@@ -44,6 +44,11 @@ router.post(
     await PersonalMonth.findByIdAndUpdate(req.query.id, {
       title: req.body.title,
     });
+    if (req.xhr) {
+      return res.status(200).json({
+        data: req.query.id,
+      });
+    }
     return res.redirect("back");
   }
 );

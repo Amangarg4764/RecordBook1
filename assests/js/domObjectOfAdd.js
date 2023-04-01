@@ -93,7 +93,7 @@ function domObject(data) {
             
             <h4 class="modal-title">${content}</h4>
           </div>
-          <form action="${editlink}" method="post" class="form-group">
+          <form id="formedit" class="form-group">
             <div class="modal-body">
               <input
                 type="text"
@@ -105,7 +105,7 @@ function domObject(data) {
               />
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-success">Save</button>
+              <button class="btn btn-success" onclick="edit('${editlink}','${datamodel}');";>Save</button>
             </div>
           </form>
         </div>
