@@ -44,7 +44,12 @@
         <%if(data.journeys.length == 0 && data.otherExp == 0){%> <%-
         include('_nodata');%> <%}else{%> <% for (i of
         data.journeys.reverse()){%>
-        <div class="btn btn-default btn-lg" role="button" style="margin: 5px">
+        <div
+          class="btn btn-default btn-lg"
+          role="button"
+          id="<%= i._id%>"
+          style="margin: 5px"
+        >
           <a
             href="/getThisJourney/?id=<%=i.id%>"
             style="text-decoration: none; color: black"
@@ -52,20 +57,24 @@
             <p>Profit : ₹ <%=i.profit%></p>
             <h3 class="text-capitalize"><%=i.jname%></h3></a
           >
-          <a href="/deleteThisJourney/?id=<%=i.id%>"
-            ><button class="btn btn-danger">Delete</button></a
+          <button
+            class="btn btn-danger"
+            onclick="removeElement('/deleteThisJourney/?id=<%=i.id%>','<%= i._id%>');"
           >
+            Delete
+          </button>
         </div>
+        <script src="/assest/js/removeElement.js"></script>
         <%}%> <% for (i of data.otherExp.reverse()){%>
         <!--varaiables-->
         <% let getlink="/getThisExpenseDetail/?id="+i.id; let
         price=i.totalPrice; let name=i.oname; let dataTarget="#myModal"+i._id;
         let dataTargetId="myModal"+i._id; let content="Update Name"; let
         updatelink="/updateOtherExpensive/?id="+i._id; let
-        deletelink="/deleteOtherExpensive/?id="+i._id %>
+        deletelink="/deleteOtherExpensive/?id="+i._id; let domid=i._id; %>
         <!-- partails cart2-->
         <%-
-        include('_card2',{price:price,getlink:getlink,name:name,dataTarget:dataTarget,
+        include('_card2',{domid:domid,price:price,getlink:getlink,name:name,dataTarget:dataTarget,
         dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});%>
         <%}%><%}%>
       </div>

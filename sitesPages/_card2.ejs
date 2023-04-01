@@ -1,4 +1,9 @@
-<div class="btn btn-default btn-lg" role="button" style="margin: 5px">
+<div
+  class="btn btn-default btn-lg"
+  role="button"
+  id="<%=domid%>"
+  style="margin: 5px"
+>
   <a href="<%= getlink %>" style="text-decoration: none; color: black">
     <h4>Total Spend : ₹ <%= price %></h4>
     <h3 class="text-capitalize"><%= name %></h3>
@@ -39,5 +44,11 @@
       </div>
     </div>
   </div>
-  <a href="<%= deletelink%>"><button class="btn btn-danger">Delete</button></a>
+  <button
+    class="btn btn-danger"
+    onclick="removeElement('<%= deletelink %>','<%= domid%>');"
+  >
+    Delete
+  </button>
 </div>
+<script src="/assest/js/removeElement.js"></script>

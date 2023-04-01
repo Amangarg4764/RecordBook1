@@ -42,8 +42,8 @@
         dataTarget = "#myModal2"+i._id; let dataTargetId = "myModal2"+i._id; let
         content = "Update Month Name"; let updatelink =
         "/updateMonth/?id="+i._id; let deletelink = "/deleteMonth/?id="+i._id;
-        %>
-        <%-include('_card1',{getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
+        let domid=i._id; %>
+        <%-include('_card1',{domid:domid,getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
         %> <%}%><%}%>
       </div>
     </div>

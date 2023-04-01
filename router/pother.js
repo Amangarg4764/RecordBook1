@@ -53,7 +53,11 @@ router.get(
     }
     await PersonalMonth.deleteMany({ parent: req.query.id });
     await PersonalList.findByIdAndDelete(req.query.id);
-
+    if (req.xhr) {
+      return res.status(200).json({
+        data: "right",
+      });
+    }
     return res.redirect("back");
   }
 );

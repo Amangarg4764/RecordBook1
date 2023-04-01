@@ -54,7 +54,7 @@ function domObject(data) {
     price = data.data.totalPrice;
   } else if (data.base == "journeyobject") {
     //card3 start
-    return $(`<div class="btn btn-default btn-lg" role="button" style="margin: 5px">
+    return $(`<div class="btn btn-default btn-lg" role="button" id="${data.data._id}" style="margin: 5px">
     <a
       href="/getThisJourney/?id=${data.data._id}"
       style="text-decoration: none; color: black"
@@ -62,12 +62,12 @@ function domObject(data) {
       <p>Profit : ₹ ${data.data.profit}</p>
       <h3 class="text-capitalize">${data.data.jname}</h3></a
     >
-    <a href="/deleteThisJourney/?id=${data.data._id}"
-      ><button class="btn btn-danger">Delete</button></a
-    >
+  <button class="btn btn-danger" onclick="removeElement('/deleteThisJourney/?id=${data.data._id}','${data.data._id}');">Delete</button>
   </div>`);
   }
-  return $(`<div class="btn btn-default btn-lg" role="button" style="margin: 5px">
+  return $(`<div class="btn btn-default btn-lg" role="button" id="${
+    data.data._id
+  }" style="margin: 5px">
     <a href="${getlink}" style="text-decoration: none; color: black">
     
       ${price != undefined ? "<h4>Total Spend : ₹" + price + "</h4>" : ""}
@@ -111,7 +111,9 @@ function domObject(data) {
         </div>
       </div>
     </div>
-    <a href="${deletelink}"><button class="btn btn-danger">Delete</button></a>
+    <button class="btn btn-danger" onclick="removeElement('${deletelink}','${
+    data.data._id
+  }');">Delete</button>
   </div>
   `);
 }

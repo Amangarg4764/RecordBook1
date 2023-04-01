@@ -83,6 +83,11 @@ router.get(
     await UserList.findByIdAndUpdate(req.user.id, {
       $pull: { vlist: req.query.id },
     });
+    if (req.xhr) {
+      return res.status(200).json({
+        data: "right",
+      });
+    }
     return res.redirect("back");
   }
 );

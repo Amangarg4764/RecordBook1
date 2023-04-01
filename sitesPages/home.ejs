@@ -39,16 +39,16 @@
       i.vname; let dataTarget= "#myModal3"+i._id; let dataTargetId =
       "myModal3"+i._id; let content ="Update Vehical Name"; let updatelink =
       "/updateVehicalName/?id="+i.id; let deletelink =
-      "/deleteVehicle/?id="+i._id; %>
-      <%-include('_card1',{getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
+      "/deleteVehicle/?id="+i._id; let domid=i._id; %>
+      <%-include('_card1',{domid:domid,getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
       %> <%}%> <% for (i of odata){%>
       <!-- variables -->
       <% let getlink = "/getPersonalMonth/?id="+i._id+"&vname="+i.title; let
       name =i.title; let dataTarget= "#myModal4"+i._id; let dataTargetId =
       "myModal4"+i._id; let content ="Update Other Name"; let updatelink =
       "/updatePersonal/?id="+i.id; let deletelink =
-      "/deletePersonal/?id="+i._id; %>
-      <%-include('_card1',{getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
+      "/deletePersonal/?id="+i._id; let domid=i._id;%>
+      <%-include('_card1',{domid:domid,getlink:getlink,name:name,dataTarget:dataTarget,dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});
       %> <%}%><%}%>
     </div>
   </body>

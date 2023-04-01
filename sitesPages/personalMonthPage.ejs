@@ -41,10 +41,10 @@
         price=i.price; let name=i.title; let dataTarget="#myModal2"+i._id; let
         dataTargetId="myModal2"+i._id; let content="Update Month Name"; let
         updatelink="/updatePersonalMonth/?id="+i._id; let
-        deletelink="/deletePersonalMonth/?id="+i._id %>
+        deletelink="/deletePersonalMonth/?id="+i._id; let domid=i._id; %>
         <!-- partails cart2-->
         <%-
-        include('_card2',{price:price,getlink:getlink,name:name,dataTarget:dataTarget,
+        include('_card2',{domid:domid,price:price,getlink:getlink,name:name,dataTarget:dataTarget,
         dataTargetId:dataTargetId,content:content,updatelink:updatelink,deletelink:deletelink});%>
         <%}%><%}%>
       </div>

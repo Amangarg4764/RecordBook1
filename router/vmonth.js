@@ -80,6 +80,11 @@ router.get(
     let vdata = await VehicleList.findByIdAndUpdate(mdata.vname, {
       $pull: { months: req.query.id },
     });
+    if (req.xhr) {
+      return res.status(200).json({
+        data: "right",
+      });
+    }
     return res.redirect("back");
   }
 );
