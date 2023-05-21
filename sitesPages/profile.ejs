@@ -22,11 +22,7 @@
           <img src="<%=user.avatar%>" style="border-radius: 50%" />
         </div>
         <div class="col-sm-8" style="margin: 50px 0px">
-          <form
-            action="/edituser/?id=<%=user.id%>"
-            method="post"
-            class="form-group"
-          >
+          <form id="usereditform" class="form-group">
             <label for="title">Username</label>
             <input
               type="text"
@@ -34,20 +30,56 @@
               class="form-control"
               id="title"
               value="<%= user.name%>"
+              readonly
               required
             />
 
             <button
-              type="submit"
-              class="btn btn-primary"
+              id="button23"
+              class="btn btn-secondary"
               style="right: 25px; position: absolute; margin-top: 10px"
+              onclick="changemode('/edituser/?id=<%=user.id%>');"
             >
-              Save
+              Edit
             </button>
           </form>
+          <script>
+            function changemode(ulink) {
+              var domo = $("#usereditform");
+              var inputval;
+              domo.submit(function (event) {
+                event.preventDefault();
+              });
+              document.getElementById("title").readOnly = false;
+              $("#usereditform > #button23").removeClass("btn-secondary");
+              $("#usereditform > #button23").addClass("btn-warning");
+              $("#usereditform > #button23").text("Save");
+              var somelink = "changemode1('" + ulink + "');";
+              $("#usereditform > #button23").attr("onclick", somelink);
+              document.getElementById("title").focus();
+            }
+            function changemode1(link) {
+              var link1 = link + "&upname=" + $("#usereditform > input").val();
+              $.ajax({
+                type: "POST",
+                url: link1,
+                success: function (data) {
+                  console.log("username updated");
+                },
+                error: function (err) {
+                  console.log("Error in update user name");
+                },
+              });
+              document.getElementById("title").readOnly = true;
+              $("#usereditform > #button23").addClass("btn-secondary");
+              $("#usereditform > #button23").removeClass("btn-warning");
+              $("#usereditform > #button23").text("Edit");
+              var somelink = "changemode('" + link + "');";
+              $("#usereditform > #button23").attr("onclick", somelink);
+            }
+          </script>
           <br />
           <label for="arrival">User E-mail</label>
-
           <input
             type="text"
             class="form-control"

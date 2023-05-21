@@ -38,7 +38,7 @@ router.post(
   passport.checkAuthentication,
   async function (req, res) {
     let us = await Userlist.findByIdAndUpdate(req.query.id, {
-      name: req.body.uname,
+      name: req.query.upname,
     });
 
     return res.redirect("back");
